@@ -1,11 +1,10 @@
 const UserModel = require('../model/user');
 
-
 // CREATE AND SAVE A NEW USER
 
 exports.create = async (req, res) => {
     if (!req.body.email && !req.body.firstName && !req.body.lastName && !req.body.phone) {
-        res.status(400).send({ message: "Conetent can't be empty!" });  
+        res.status(400).send({ message: "Content can't be empty!" });  
     }
     const user = new UserModel({
         email: req.body.email,
@@ -28,6 +27,7 @@ exports.create = async (req, res) => {
 
 
 // Retrieve all users from the database.
+
 exports.findAll = async (req, res) => {
     try {
         const user = await UserModel.find();
@@ -73,6 +73,8 @@ exports.update = async (req, res) => {
 };
 
 // Delete a user with the specified id in the request
+
+
 exports.destroy = async (req, res) => {
     await UserModel.findByIdAndRemove(req.params.id).then(data => {
         if (!data) {
